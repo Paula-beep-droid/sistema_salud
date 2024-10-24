@@ -1,0 +1,126 @@
+---
+import Layout from "../layouts/Layout.astro"; // Importa el componente Layout desde la ruta especificada
+---
+
+<Layout title="Contacto">
+    <!-- Usamos el componente Layout con el título "Contacto" -->
+    <div class="contact-container">
+        <!-- Contenedor principal para la sección de contacto -->
+        <h1>Contáctanos</h1>
+        <!-- Encabezado principal de la página de contacto -->
+        <p>
+            Si tienes alguna pregunta o necesitas más información, no dudes en
+            enviarnos un mensaje.
+        </p>
+        <!-- Instrucciones para el usuario -->
+
+        <form class="contact-form" id="contact-form">
+            <!-- Formulario para enviar un mensaje de contacto -->
+            <label for="name">Nombre:</label>
+            <!-- Etiqueta para el campo de nombre -->
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Tu nombre"
+                required
+            />
+            <!-- Campo de entrada para el nombre, obligatorio -->
+
+            <label for="email">Correo electrónico:</label>
+            <!-- Etiqueta para el campo de correo electrónico -->
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Tu correo"
+                required
+            />
+            <!-- Campo de entrada para el correo electrónico, obligatorio -->
+
+            <label for="subject">Asunto:</label>
+            <!-- Etiqueta para el campo de asunto -->
+            <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="Asunto"
+                required
+            />
+            <!-- Campo de entrada para el asunto, obligatorio -->
+
+            <label for="message">Mensaje:</label>
+            <!-- Etiqueta para el campo de mensaje -->
+            <textarea
+                id="message"
+                name="message"
+                rows="5"
+                placeholder="Escribe tu mensaje"
+                required></textarea>
+            <!-- Área de texto para el mensaje, obligatorio -->
+
+            <button type="submit" class="submit-button">Enviar</button>
+            <!-- Botón para enviar el formulario -->
+        </form>
+    </div>
+</Layout>
+
+<style>
+    .contact-container {
+        padding: 40px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        text-align: center;
+        font-weight: bold;
+        color: #333;
+    }
+
+    p {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    input,
+    textarea {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .submit-button {
+        background-color: #fff;
+        color: #333;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    .submit-button:hover {
+        background-color: #333;
+        color: white;
+    }
+</style>

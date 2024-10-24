@@ -1,0 +1,84 @@
+---
+import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout desde la ruta especificada
+---
+
+<Layout title="Log in">
+    <!-- Usamos el componente Layout con el título "Log in" -->
+    <div class="login-container">
+        <!-- Contenedor principal para el formulario de inicio de sesión -->
+        <h1>Log in</h1>
+        <!-- Encabezado principal del formulario -->
+        <form action="/cuenta">
+            <!-- Formulario que se envía a la ruta /cuenta -->
+            <label for="email">Email</label>
+            <!-- Etiqueta para el campo de correo electrónico -->
+            <input type="email" id="email" name="email" required />
+            <!-- Campo de entrada para el correo electrónico, obligatorio -->
+
+            <label for="password">Password</label>
+            <!-- Etiqueta para el campo de contraseña -->
+            <input type="password" id="password" name="password" required />
+            <!-- Campo de entrada para la contraseña, obligatorio -->
+
+            <button type="submit">Log In</button>
+            <!-- Botón para enviar el formulario -->
+        </form>
+        <p class="signup">
+            ¿No tienes una cuenta? <a href="/auth/singup">Sign Up</a>
+        </p>
+        <!-- Mensaje para redirigir a usuarios sin cuenta -->
+    </div>
+</Layout>
+
+<style>
+    .login-container {
+        background-color: #40d1e2;
+        padding: 20px;
+        border-radius: 5px;
+        max-width: 300px;
+        margin: auto;
+        height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    h1 {
+        color: #333;
+        text-align: center;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    label {
+        margin-bottom: 5px;
+        color: #333;
+    }
+    input {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 3px;
+        color: #333;
+    }
+    button {
+        padding: 10px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #2980b9;
+    }
+    .signup {
+        text-align: center;
+        margin-top: 10px;
+        color: #333;
+    }
+    .signup a {
+        color: #3498db;
+        text-decoration: none;
+    }
+</style>
