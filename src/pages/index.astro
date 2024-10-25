@@ -9,15 +9,22 @@ import Layout from "../layouts/Layout.astro"; // Importa el componente Layout de
         <!-- Contenedor principal para el contenido de la página -->
         <div class="logo">Data Health</div>
         <!-- Elemento para mostrar el logo de la plataforma -->
-        <div class="login-link">
-            <a href="/auth/singup">Recepcionista</a>
-            <a href="/auth/login">Profesional</a>
-            <!-- Enlace que redirige a la página de inicio de sesión -->
-        </div>
+        <form class="form_ingresar" action="/auth/singup">
+            <!-- Formulario que envía los datos a la ruta de registro -->
+            <input type="text" placeholder="Ingresa tu número de documento" required />
+            <!-- Campo de entrada para el correo electrónico, obligatorio -->
+            <button type="submit">Ingresar</button>
+            <!-- Botón para enviar el formulario y registrarse -->
+        </form>
     </div>
 </Layout>
 
 <style>
+    .form_ingresar input[type="text"]{
+        width: 400px; 
+        text-align: center;
+        height: 40px;
+    }
     .container {
         max-width: 800px;
         margin: 0 auto;
