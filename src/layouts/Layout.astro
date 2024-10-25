@@ -53,19 +53,7 @@ const { title } = Astro.props;
 		<slot />
 
 		<footer>
-			<p>&copy 2024 Poli - Plataforma de Registro</p>
-			<h3>
-				Vistas de autenticación (esta sección será eliminada en la
-				proxima entrega)
-			</h3>
-			<div class="enlaces">
-				<a href="/auth/login">Log In</a>
-				<a href="/auth/singup">Sing Up</a>
-				<a href="/auth/reset-pass">Reset Password</a>
-				<a href="/auth/update-pass">Update Password</a>
-				<a href="/auth/denied">Acceso Denegado</a>
-				<a href="/auth/protected">Vista Protegida</a>
-			</div>
+			<p>&copy Plataforma de Gestión de Datos</p>
 		</footer>
 	</body>
 </html>
@@ -83,7 +71,7 @@ const { title } = Astro.props;
 	}
 	body {
 		font-family: Arial, sans-serif;
-		background-color: #40d1e2;
+		background-color: #add6d344;
 		color: white;
 		margin: 0;
 		padding: 0;
@@ -94,7 +82,7 @@ const { title } = Astro.props;
 	}
 
 	.nav-list a {
-		color: blue;
+		color: #202b40;
 		text-decoration: none;
 		margin-left: 10px;
 		display: inline;
@@ -108,8 +96,8 @@ const { title } = Astro.props;
 		align-items: center;
 		justify-content: space-between;
 		justify-content: flex-end;
-		padding: 2rem;
-		background-color: #40d1e2;
+		padding: 1rem;
+		background-color: rgba(10, 128, 108, 0.644);
 	}
 
 	.nav-list {
@@ -178,8 +166,8 @@ const { title } = Astro.props;
 	}
 
 	footer {
-		background-color: #333;
-		color: white;
+		background-color: #0b6975;
+		color: rgba(255, 255, 255, 0.795);
 		padding: 1em;
 		text-align: center;
 		margin: auto auto 0 auto;
