@@ -1,17 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro"; // Importa el componente Layout desde la ruta especificada
 ---
-
 <Layout title="Cuenta">
-    <!-- Usamos el componente Layout con el título "Cuenta" -->
     <div class="account-container">
-        <!-- Contenedor principal para la sección de cuenta del usuario -->
         <h1>Mi cuenta</h1>
-        <!-- Encabezado principal de la página de cuenta -->
         <form>
-            <!-- Formulario para editar la información de la cuenta -->
             <label for="email">Email</label>
-            <!-- Etiqueta para el campo de correo electrónico -->
             <input
                 type="email"
                 id="email"
@@ -19,10 +13,8 @@ import Layout from "../layouts/Layout.astro"; // Importa el componente Layout de
                 value="charliedoe@gmail.com"
                 required
             />
-            <!-- Campo de entrada para el correo electrónico, con valor predeterminado, obligatorio -->
 
             <label for="nombre">Nombre</label>
-            <!-- Etiqueta para el campo de nombre -->
             <input
                 type="text"
                 id="nombre"
@@ -30,33 +22,19 @@ import Layout from "../layouts/Layout.astro"; // Importa el componente Layout de
                 value="Charlie Doe"
                 required
             />
-            <!-- Campo de entrada para el nombre, con valor predeterminado, obligatorio -->
 
-            <div class="password-section">
-                <!-- Sección dedicada a la configuración de la contraseña -->
-                <h3>Configuración de contraseña</h3>
-                <!-- Encabezado de la sección de contraseña -->
-                <a href="#">Reset password</a>
-                <!-- Enlace para restablecer la contraseña -->
-            </div>
+        
 
             <div class="checkbox-container">
-                <!-- Contenedor para la casilla de verificación -->
                 <input type="checkbox" id="marketing" name="marketing" />
-                <!-- Casilla de verificación para consentir correos de marketing -->
-                <label for="marketing"
-                    >Doy mi consentimiento para recibir correos electrónicos de
-                    marketing.</label
-                >
-                <!-- Mensaje sobre el consentimiento de marketing -->
+                <label for="marketing">
+                    Doy mi consentimiento para mis datos.
+                </label>
             </div>
 
             <div class="button-container">
-                <!-- Contenedor para los botones de acción -->
-                <button type="submit">Salvar Cambios</button>
-                <!-- Botón para enviar el formulario y guardar los cambios -->
+                <button type="submit">Guardar Cambios</button>
                 <button type="button">Cancelar</button>
-                <!-- Botón para cancelar la edición -->
             </div>
         </form>
     </div>
@@ -64,71 +42,102 @@ import Layout from "../layouts/Layout.astro"; // Importa el componente Layout de
 
 <style>
     .account-container {
-        background-color: #40d1e2;
-        padding: 20px;
-        border-radius: 5px;
+        background-color: #0b6975;
+        padding: 25px;
+        border-radius: 8px;
         width: 100%;
-        max-width: 600px;
-        color: #333;
+        max-width: 500px;
+        margin: 0 auto;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 80px;
     }
+
     h1 {
         color: #333;
-        margin-bottom: 20px;
-        font-size: 35px;
+        margin-bottom: 15px;
+        font-size: 32px;
         font-weight: bold;
+        text-align: center;
     }
+
     h3 {
         color: #333;
-        margin-bottom: 10px;
-        font-size: 20px;
+        margin-bottom: 5px;
+        font-size: 18px;
         font-weight: bold;
     }
+
     form {
         display: flex;
         flex-direction: column;
     }
+
     label {
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         color: #333;
+        font-weight: bold;
     }
+
     input[type="email"],
     input[type="text"] {
-        padding: 10px;
-        margin-bottom: 15px;
-        border: none;
-        border-radius: 3px;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
     }
+
     .password-section {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        text-align: center;
     }
+
     .password-section a {
-        color: #0000ee;
+        color: #0056b3;
         text-decoration: none;
+        font-weight: bold;
     }
+
+    .password-section a:hover {
+        text-decoration: underline;
+    }
+
     .checkbox-container {
         display: flex;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
     }
+
     input[type="checkbox"] {
         margin-right: 10px;
     }
+
     .button-container {
         display: flex;
         gap: 10px;
+        justify-content: center;
     }
+
     button {
         padding: 10px 20px;
         border: none;
-        border-radius: 3px;
+        border-radius: 5px;
+        font-size: 16px;
         cursor: pointer;
+        transition: background-color 0.3s ease;
     }
+
     button[type="submit"] {
         background-color: #3498db;
         color: white;
     }
+
     button[type="button"] {
         background-color: #e0e0e0;
         color: #333;
+    }
+
+    button:hover {
+        filter: brightness(0.9);
     }
 </style>
