@@ -1,9 +1,8 @@
 ---
-import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout desde la ruta especificada
+import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="Admin">
-    <!-- Usamos el componente Layout con el título "Admin" -->
     <div class="doctor-dashboard">
         <h2>Panel de Citas</h2>
         <table class="appointments-table">
@@ -17,7 +16,6 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
                 </tr>
             </thead>
             <tbody>
-                <!-- Ejemplo de cita -->
                 <tr>
                     <td>2024-11-10</td>
                     <td>10:00 AM</td>
@@ -34,16 +32,50 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
                     <td>Maria López</td>
                     <td>Pendiente</td>
                     <td>
-                        <button class="edit-button">Editar</button>
-                        <button class="delete-button">Eliminar</button>
+                        <button
+                            onclick="location.href='/auth/historial_clinico'"
+                            class="editar-boton">Historial Clínico</button
+                        >
+                        <button class="reagendar-boton">Cambiar Cita</button>
+                        <button
+                            class="aceptar-boton"
+                            onclick="aceptarCita(this)">Aceptar Cita</button
+                        >
+                        <span class="mensaje-confirmacion"></span>
                     </td>
                 </tr>
-                <!-- Agrega más filas de citas aquí -->
             </tbody>
         </table>
     </div>
-    
+
+    <div id="ventanaEmergente" class="ventana-emergente">
+        <div class="contenido-ventana">
+            <p class="mensaje-confirmacion">La cita ha sido aceptada.</p>
+            <button onclick="cerrarVentana()" class="cerrar-boton">X</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" client:load>
+        // Función para aceptar la cita
+        function aceptarCita(button) {
+            // Cambiar el texto del botón
+            button.innerText = "Cita Aceptada";
+            // Deshabilitar el botón para evitar que se vuelva a pulsar
+            button.disabled = true;
+            // Esconder el botón
+            button.style.display = "none";
+            // Mostrar la ventana emergente
+            document.getElementById('ventanaEmergente').style.display = 'block';
+        }
+
+        // Función para cerrar la ventana emergente
+        function cerrarVentana() {
+            document.getElementById('ventanaEmergente').style.display = 'none';
+        }
+    </script>
+
     <style>
+        /* Estilos para la tabla y botones */
         .doctor-dashboard {
             max-width: 800px;
             margin: 20px auto;
@@ -52,59 +84,99 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
             border-radius: 8px;
             margin-top: 100px;
         }
-    
+
         .appointments-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            
-
         }
-    
+
         .appointments-table th,
         .appointments-table td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #1a1717;
-            margin-top: 100px;
         }
-    
+
         .appointments-table th {
             background-color: #add6d344;
             font-weight: bold;
             color: #222222;
-            margin-top: 100px;
         }
-    
+
         .appointments-table td {
             background-color: #add6d344;
         }
-    
-        .edit-button,
-        .delete-button {
+
+        .editar-boton,
+        .reagendar-boton,
+        .aceptar-boton {
             padding: 6px 12px;
             margin-right: 5px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
-    
-        .edit-button {
+
+        .editar-boton {
             background-color: #add6d344;
             color: white;
         }
-    
-        .delete-button {
-            background-color: #c72f2f;
+
+        .reagendar-boton {
+            background-color: #add6d344;
             color: white;
         }
-    
-        .edit-button:hover {
+
+        .aceptar-boton {
+            background-color: #add6d344;
+            color: white;
+        }
+
+        .editar-boton:hover {
             background-color: #07585c;
         }
-    
-        .delete-button:hover {
+
+        .reagendar-boton:hover {
             background-color: #a02626;
         }
+
+        .aceptar-boton:hover {
+            background-color: #a02626;
+        }
+
+        /* Estilos para la ventana emergente */
+        .ventana-emergente {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+        }
+
+        .contenido-ventana {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .cerrar-boton {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cerrar-boton:hover {
+            background-color: darkred;
+        }
     </style>
-    
+</Layout>

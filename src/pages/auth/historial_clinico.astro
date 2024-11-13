@@ -1,0 +1,139 @@
+---
+import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout desde la ruta especificada
+---
+<Layout title="Hitorial Clinico">
+<div class="container">
+    <!-- Encabezado -->
+    <div class="header">
+      HISTORIAL CLÍNICO
+    </div>
+  
+    <!-- Sección principal -->
+    <div class="main">
+      <aside class="sidebar">
+        <h2>Pacientes</h2>
+        <ul class="patients-list">
+          <li>Jorge Elias</li>
+          <li class="active">María Rocio</li>
+          <li>Mathew Roi</li>
+          <li>Sophie Smith</li>
+          <li>Karina Nieto</li>
+        </ul>
+      </aside>
+  
+      <section class="calendar-container">
+        <h2>Citas Programadas</h2>
+        <div class="calendar">
+          <!-- Cabecera de la semana -->
+          <div class="day">Lunes</div>
+          <div class="day">Martes</div>
+          <div class="day">Miércoles</div>
+          <div class="day">Jueves</div>
+          <div class="day">Viernes</div>
+          <div class="day">Sábado</div>
+          <div class="day">Domingo</div>
+  
+          <!-- Días del mes -->
+          <!-- Añade las clases .selected donde sea necesario -->
+          <div class="day"></div><div class="day"></div><div class="day"></div>
+          <div class="day">1</div><div class="day">2</div>
+          <!-- Continúa añadiendo días según corresponda -->
+        </div>
+      </section>
+  
+      <aside class="annotations">
+        <h2>Anotaciones y/o Antecedentes</h2>
+        <ul>
+          <li>La señora María Rocio presenta avances en su tratamiento.</li>
+          <li>Para el 7 de Junio, se receta doble dosis de analgésicos por dolores crónicos prolongados.</li>
+          <li>En Mayo no se requiere control médico.</li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+  
+<style>
+    /* Estilos de contenedor */
+    .container {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #e3f2f1;
+      color: #333;
+      padding: 1rem;
+      max-width: 800px;
+      margin: auto;
+    }
+  
+    /* Estilo del encabezado */
+    .header {
+      width: 100%;
+      background-color: #008080;
+      color: #ffffff;
+      padding: 1rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  
+    /* Sección de pacientes y anotaciones */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      width: 20%;
+      background-color: #156c6c;
+      color: #ffffff;
+      padding: 1rem;
+    }
+  
+    .patients-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  
+    .patients-list li {
+      margin: 0.5rem 0;
+      padding: 0.3rem;
+      background-color: #1f8277;
+      cursor: pointer;
+    }
+  
+    .patients-list li.active {
+      background-color: #1bb1a0;
+      font-weight: bold;
+    }
+  
+    /* Estilo del calendario */
+    .calendar-container {
+      margin: 1rem;
+      width: 60%;
+    }
+  
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+    }
+  
+    .day {
+      border: 1px solid #ccc;
+      padding: 0.5rem;
+    }
+  
+    .selected {
+      background-color: #1bb1a0;
+      color: #ffffff;
+    }
+  
+    /* Estilo de la sección de anotaciones */
+    .annotations {
+      width: 20%;
+      padding: 1rem;
+      background-color: #d1f5f4;
+      color: #333;
+    }
+  </style>
+  
+ 

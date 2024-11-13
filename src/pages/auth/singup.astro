@@ -1,7 +1,6 @@
 ---
-import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout desde la ruta especificada
+import Layout from "../../layouts/Layout.astro";
 ---
-
 
 <Layout title="Recepcionista">
     <!-- Usamos el componente Layout con el título "Recepcionista" -->
@@ -25,8 +24,8 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
                     <td>Carlos García</td>
                     <td>Pendiente</td>
                     <td>
-                        <button class="confirm-button">Confirmar</button>
-                        <button class="cancel-button">Cancelar</button>
+                        <button class="confirm-button" id="confirm1">Confirmar</button>
+                        <button class="cancel-button" id="cancel1">Cancelar</button>
                     </td>
                 </tr>
                 <tr>
@@ -35,15 +34,73 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
                     <td>Lucía Fernández</td>
                     <td>Pendiente</td>
                     <td>
-                        <button class="confirm-button">Confirmar</button>
-                        <button class="cancel-button">Cancelar</button>
+                        <button class="confirm-button" id="confirm2">Confirmar</button>
+                        <button class="cancel-button" id="cancel2">Cancelar</button>
                     </td>
                 </tr>
-                <!-- Agrega más filas de citas aquí -->
             </tbody>
         </table>
     </div>
-    
+
+    <!-- Modal para mostrar detalles de la cita -->
+    <div id="modalDetalles" class="ventana-emergente">
+        <div class="contenido-ventana">
+            <h3>Detalles de la Cita</h3>
+            <p id="detallesCita"></p>
+            <button onclick="cerrarVentana('modalDetalles')" class="cerrar-boton">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Modal para confirmación de cancelación -->
+    <div id="modalCancelar" class="ventana-emergente">
+        <div class="contenido-ventana">
+            <p id="mensajeCancelar"></p>
+            <button onclick="cerrarVentana('modalCancelar')" class="cerrar-boton">Cancelar</button>
+            <button onclick="cancelarCita()" class="confirmar-boton">Confirmar Cancelación</button>
+        </div>
+    </div>
+
+    <script type="module">
+        // Definir las funciones para manejar la lógica
+        function mostrarDetallesCita(paciente, especialidad, fecha, hora) {
+            const detalles = `Paciente: ${paciente} <br> Especialidad: ${especialidad} <br> Fecha: ${fecha} <br> Hora: ${hora}`;
+            document.getElementById('detallesCita').innerHTML = detalles;
+            document.getElementById('modalDetalles').style.display = 'block';
+        }
+
+        // Confirmar cancelación de la cita
+        function confirmarCancelacion(paciente) {
+            document.getElementById('mensajeCancelar').innerText = `¿Estás seguro de cancelar la cita de ${paciente}?`;
+            document.getElementById('modalCancelar').style.display = 'block';
+        }
+
+        // Cerrar ventanas emergentes
+        function cerrarVentana(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Cancelar cita (simulación de acción)
+        function cancelarCita() {
+            alert("Cita cancelada.");
+            cerrarVentana('modalCancelar');
+        }
+
+        // Asignar eventos a los botones para mostrar detalles o confirmar cancelación
+        document.getElementById('confirm1').addEventListener('click', function() {
+            mostrarDetallesCita('Carlos García', 'Cardiólogo', '2024-11-10', '09:00 AM');
+        });
+        document.getElementById('cancel1').addEventListener('click', function() {
+            confirmarCancelacion('Carlos García');
+        });
+
+        document.getElementById('confirm2').addEventListener('click', function() {
+            mostrarDetallesCita('Lucía Fernández', 'Pediatra', '2024-11-10', '10:30 AM');
+        });
+        document.getElementById('cancel2').addEventListener('click', function() {
+            confirmarCancelacion('Lucía Fernández');
+        });
+    </script>
+
     <style>
         .reception-dashboard {
             max-width: 800px;
@@ -102,6 +159,54 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
 
         .cancel-button:hover {
             background-color: #a02626;
+        }
+
+        /* Estilos para las ventanas emergentes */
+        .ventana-emergente {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+        }
+
+        .contenido-ventana {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .cerrar-boton {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cerrar-boton:hover {
+            background-color: darkred;
+        }
+
+        .confirmar-boton {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .confirmar-boton:hover {
+            background-color: #3b8e44;
         }
     </style>
 </Layout>
