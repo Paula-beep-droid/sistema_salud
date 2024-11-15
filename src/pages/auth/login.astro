@@ -11,7 +11,7 @@ import Layout from "../../layouts/Layout.astro";
                     <th>Fecha</th>
                     <th>Hora</th>
                     <th>Paciente</th>
-                    <th>Estado</th>
+  
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -20,23 +20,27 @@ import Layout from "../../layouts/Layout.astro";
                     <td>2024-11-10</td>
                     <td>10:00 AM</td>
                     <td>Juan Pérez</td>
-                    <td>Confirmado</td>
+
                     <td>
-                        <button class="edit-button">Editar</button>
-                        <button class="delete-button">Eliminar</button>
+                        <button
+                            onclick="location.href='/auth/historial_clinico'"
+                            class="editar-boton">Historial Clínico</button
+                        >
+                        <button
+                            class="aceptar-boton"
+                            onclick="aceptarCita(this)">Aceptar Cita</button
+                        >
                     </td>
                 </tr>
                 <tr>
                     <td>2024-11-10</td>
                     <td>11:00 AM</td>
                     <td>Maria López</td>
-                    <td>Pendiente</td>
                     <td>
                         <button
                             onclick="location.href='/auth/historial_clinico'"
                             class="editar-boton">Historial Clínico</button
                         >
-                        
                         <button
                             class="aceptar-boton"
                             onclick="aceptarCita(this)">Aceptar Cita</button
@@ -65,12 +69,12 @@ import Layout from "../../layouts/Layout.astro";
             // Esconder el botón
             button.style.display = "none";
             // Mostrar la ventana emergente
-            document.getElementById('ventanaEmergente').style.display = 'block';
+            document.getElementById("ventanaEmergente").style.display = "block";
         }
 
         // Función para cerrar la ventana emergente
         function cerrarVentana() {
-            document.getElementById('ventanaEmergente').style.display = 'none';
+            document.getElementById("ventanaEmergente").style.display = "none";
         }
     </script>
 
@@ -131,6 +135,7 @@ import Layout from "../../layouts/Layout.astro";
         .aceptar-boton {
             background-color: #add6d344;
             color: white;
+            margin-top: 15px;
         }
 
         .editar-boton:hover {
