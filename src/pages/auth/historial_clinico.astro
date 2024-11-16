@@ -2,176 +2,145 @@
 import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout desde la ruta especificada
 ---
 <Layout title="Historial Clínico">
-  <div class="container">
-    <!-- Encabezado -->
-    <div class="header">
-      HISTORIAL CLÍNICO
-    </div>
 
-    <!-- Sección principal -->
-    <div class="main">
-      <aside class="sidebar">
-        <h2>Pacientes</h2>
-        <ul class="patients-list">
-          <li>Jorge Elias</li>
-          <li class="active">María Rocio</li>
-          <li>Mathew Roi</li>
-          <li>Sophie Smith</li>
-          <li>Karina Nieto</li>
-        </ul>
-      </aside>
-
-      <section class="calendar-container">
-        <h2>Citas Programadas</h2>
-        <div class="calendar">
-          <!-- Cabecera de la semana -->
-          <div class="day">Lunes</div>
-          <div class="day">Martes</div>
-          <div class="day">Miércoles</div>
-          <div class="day">Jueves</div>
-          <div class="day">Viernes</div>
-          <div class="day">Sábado</div>
-          <div class="day">Domingo</div>
-
-          <!-- Días del mes -->
-          <div class="day"></div><div class="day"></div><div class="day"></div>
-          <div class="day">1</div><div class="day">2</div>
-          <!-- Continúa añadiendo días según corresponda -->
-        </div>
-      </section>
-
-      <aside class="annotations">
-        <h2>Anotaciones y/o Antecedentes</h2>
-        <ul>
-          <li>La señora María Rocio presenta avances en su tratamiento.</li>
-          <li>Para el 7 de Junio, se receta doble dosis de analgésicos por dolores crónicos prolongados.</li>
-          <li>En Mayo no se requiere control médico.</li>
-        </ul>
-      </aside>
-    </div>
+  <!-- Encabezado -->
+  <div class="header">
+    HISTORIAL CLÍNICO
   </div>
+
+  <!-- Sección principal -->
+  
+    <aside class="sidebar">
+      <h2>Pacientes</h2>
+      <ul class="patients-list">
+        <li>Jorge Elias</li>
+        <li class="active">María Rocio</li>
+        <li>Mathew Roi</li>
+        <li>Sophie Smith</li>
+        <li>Karina Nieto</li>
+      </ul>
+    </aside>
+
+    <!-- Contenedor del calendario -->
+    <section class="calendar-container">
+      <h2>Citas Programadas</h2>
+      <div class="calendar">
+        <!-- Cabecera de la semana -->
+        <div class="day">Lunes</div>
+        <div class="day">Martes</div>
+        <div class="day">Miércoles</div>
+        <div class="day">Jueves</div>
+        <div class="day">Viernes</div>
+        <div class="day">Sábado</div>
+        <div class="day">Domingo</div>
+
+        <!-- Días del mes -->
+        <div class="day"></div><div class="day"></div><div class="day"></div>
+        <div class="day">1</div><div class="day">2</div>
+      </div>
+    </section>
+
+    <!-- Sección de anotaciones -->
+    <aside class="annotations">
+      <h2>Anotaciones y/o Antecedentes</h2>
+      <ul>
+        <li>La señora María Rocio presenta avances en su tratamiento.</li>
+        <li>Para el 7 de Junio, se receta doble dosis de analgésicos por dolores crónicos prolongados.</li>
+        <li>En Mayo no se requiere control médico.</li>
+      </ul>
+    </aside>
+  
+
 </Layout>
 
 <style>
-  /* Estilos de contenedor */
+/* Estilo del encabezado */
+.header {
+  display: flex;
+  max-width: 100%;
+  background-color: #008080;
+  color: #ffffff;
+  padding: 1rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Estilo de la sección principal */
 
 
-  /* Estilo del encabezado */
-  .header {
-   
-    max-width: 100%;
-    background-color: #008080;
-    color: #ffffff;
-    padding: 1rem;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bold;
-    margin-left: 10px;
+/* Barra lateral */
+.sidebar {
+  margin-top: 10px;
+  width: 20%; /* 20% del ancho para la barra lateral */
+  background-color: #156c6c;
+  color: #ffffff;
+  padding: 1rem;
+  box-sizing: border-box; /* Incluye el padding en el ancho */
+  height: 100%;
+}
+
+.patients-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.patients-list li {
+  margin: 0.5rem 0;
+  padding: 0.7rem;
+  background-color: #1f8277;
+  cursor: pointer;
+}
+
+.patients-list li.active {
+  background-color: #1bb1a0;
+  font-weight: bold;
+}
+
+/* Contenedor del calendario */
+.calendar-container {
+  flex-direction: column;
+  flex: 2; /* Más espacio para el calendario */
+  width: 700px;
+  background-color: #ffffff;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin-left: 350px;
+  margin-top: -310px;
+  color: black;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* Dividir en 7 columnas */
+  gap: 5px;
   
-  }
+  text-align: center;
+}
 
-  /* Sección principal con flexbox para alineación */
-  .main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; /* Permite que los elementos se acomoden */
-    gap: 20px; /* Espacio entre elementos */
-    justify-content: space-between;
-    margin-top: 1rem;
-  }
+.day {
+  border: 1px solid #ccc;
+  padding: 0.5rem;
+}
 
-  /* Estilo de la barra lateral */
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-    background-color: #156c6c;
-    color: #ffffff;
-    padding: 1rem;
-  }
+.selected {
+  background-color: #1bb1a0;
+  color: #ffffff;
+}
 
-  .patients-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .patients-list li {
-    margin: 0.5rem 0;
-    padding: 0.7rem;
-    background-color: #1f8277;
-    cursor: pointer;
-  }
-
-  .patients-list li.active {
-    background-color: #1bb1a0;
-    font-weight: bold;
-  }
-
-  /* Estilo del calendario */
-  .calendar-container {
-    flex: 1;
-    min-width: 300px;
-    background-color: #ffffff;
-    padding: 1rem;
-  }
-
-  .calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-  }
-
-  .day {
-    border: 1px solid #ccc;
-    padding: 0.5rem;
-  }
-
-  .selected {
-    background-color: #1bb1a0;
-    color: #ffffff;
-  }
-
-  /* Estilo de la sección de anotaciones */
-  .annotations {
-    flex: 1;
-    min-width: 300px;
-    background-color: #d1f5f4;
-    color: #333;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* Media Queries para diseño responsive */
-  @media (max-width: 768px) {
-    .main {
-      flex-direction: column; /* Cambia a columna en pantallas pequeñas */
-    }
-
-    .sidebar {
-      width: 100%;
-      margin-bottom: 1rem;
-    }
-
-    .calendar-container {
-      width: 100%;
-      margin-left: 0;
-    }
-
-    .annotations {
-      width: 100%;
-      margin-left: 0;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .header {
-      font-size: 1.5rem; /* Reducir tamaño de la fuente en pantallas pequeñas */
-    }
-    
-    .patients-list li {
-      padding: 0.5rem;
-    }
-  }
+/* Sección de anotaciones */
+.annotations {
+  flex-direction: column;
+  flex: 1; /* Menos espacio que el calendario */
+  background-color: #d1f5f4;
+  color: #333;
+  padding: 1rem;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 400px;
+  margin-left: 1070px;
+  margin-top: -110px;
+}
 </style>
