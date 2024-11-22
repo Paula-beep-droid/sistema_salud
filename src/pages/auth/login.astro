@@ -20,12 +20,8 @@ import Layout from "../../layouts/Layout.astro";
                     <td>10:00 AM</td>
                     <td>Juan Pérez</td>
                     <td>
-                        <button
-                            onclick="location.href='/auth/historial_clinico'"
-                            class="editar-boton">Historial Clínico</button>
-                        <button
-                            class="aceptar-boton"
-                            onclick="aceptarCita(this)">Aceptar Cita</button>
+                        <button onclick="location.href='/auth/historial_clinico'" class="editar-boton">Historial Clínico</button>
+                        <button class="aceptar-boton" onclick="aceptarCita(this)">Aceptar Cita</button>
                     </td>
                 </tr>
                 <tr>
@@ -33,28 +29,23 @@ import Layout from "../../layouts/Layout.astro";
                     <td>11:00 AM</td>
                     <td>Maria López</td>
                     <td>
-                        <button
-                            onclick="location.href='/auth/historial_clinico'"
-                            class="editar-boton">Historial Clínico</button>
-                        <button
-                            class="aceptar-boton"
-                            onclick="aceptarCita(this)">Aceptar Cita</button>
-                        <span class="mensaje-confirmacion"></span>
+                        <button onclick="location.href='/auth/historial_clinico'" class="editar-boton">Historial Clínico</button>
+                        <button class="aceptar-boton" onclick="aceptarCita(this)">Aceptar Cita</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Ventana emergente para la confirmación de la cita -->
+    <!-- Ventana emergente para la confirmación -->
     <div id="ventanaEmergente" class="ventana-emergente">
         <div class="contenido-ventana">
             <p class="mensaje-confirmacion">La cita ha sido aceptada.</p>
-            <button onclick="cerrarVentana()" class="cerrar-boton">X</button>
+            <button onclick="cerrarVentana()" class="cerrar-boton">Cerrar</button>
         </div>
     </div>
 
-    <script>
+    <script is:inline>
         // Función para aceptar la cita
         function aceptarCita(button) {
             // Cambiar el texto del botón a "Cita Aceptada"
@@ -74,7 +65,6 @@ import Layout from "../../layouts/Layout.astro";
     </script>
 
     <style>
-        /* Estilos para la tabla y botones */
         .doctor-dashboard {
             max-width: 800px;
             margin: 20px auto;
@@ -122,20 +112,19 @@ import Layout from "../../layouts/Layout.astro";
         }
 
         .aceptar-boton {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #add6d344;
             margin-top: 15px;
+            color: white;
         }
 
         .editar-boton:hover {
-            background-color: #07585c;
+            background-color: #005bb5;
         }
 
         .aceptar-boton:hover {
             background-color: #3b8e44;
         }
 
-        /* Estilos para la ventana emergente */
         .ventana-emergente {
             display: none;
             position: fixed;
