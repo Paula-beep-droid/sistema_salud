@@ -5,13 +5,15 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
 
   <!-- Encabezado -->
   <div class="header">
+    <div class="logo">Data Health</div> <!-- Logo en la esquina superior izquierda -->
     HISTORIAL CLÍNICO
   </div>
 
   <!-- Sección principal -->
-  
+  <div class="main-content">
+    <!-- Barra lateral -->
     <aside class="sidebar">
-      <h2>Pacientes</h2>
+      <div class="section-title">Pacientes</div>
       <ul class="patients-list">
         <li>Jorge Elias</li>
         <li class="active">María Rocio</li>
@@ -23,9 +25,8 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
 
     <!-- Contenedor del calendario -->
     <section class="calendar-container">
-      <h2>Citas Programadas</h2>
+      <div class="section-title">Citas Programadas</div>
       <div class="calendar">
-        <!-- Cabecera de la semana -->
         <div class="day">Lunes</div>
         <div class="day">Martes</div>
         <div class="day">Miércoles</div>
@@ -34,22 +35,28 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
         <div class="day">Sábado</div>
         <div class="day">Domingo</div>
 
-        <!-- Días del mes -->
         <div class="day"></div><div class="day"></div><div class="day"></div>
-        <div class="day">1</div><div class="day">2</div>
+        <div class="day">1</div><div class="day">2</div><div class="day">3</div><div class="day">4</div>
+        <div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div>
+        <div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div>
+        <div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div>
+        <div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div>
+        <div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div>
+        <div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div>
+        <div class="day">29</div><div class="day">30</div>
       </div>
     </section>
 
     <!-- Sección de anotaciones -->
     <aside class="annotations">
-      <h2>Anotaciones y/o Antecedentes</h2>
+      <div class="section-title">Anotaciones y/o Recomendaciones</div>
       <ul>
         <li>La señora María Rocio presenta avances en su tratamiento.</li>
         <li>Para el 7 de Junio, se receta doble dosis de analgésicos por dolores crónicos prolongados.</li>
         <li>En Mayo no se requiere control médico.</li>
       </ul>
     </aside>
-  
+  </div>
 
 </Layout>
 
@@ -57,27 +64,50 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
 /* Estilo del encabezado */
 .header {
   display: flex;
-  max-width: 100%;
+  justify-content: center; /* Centra el título horizontalmente */
+  align-items: center; /* Centra el título verticalmente */
   background-color: #008080;
   color: #ffffff;
   padding: 1rem;
-  text-align: center;
   font-size: 2rem;
   font-weight: bold;
+  position: relative; /* Permite posicionar el logo dentro de este contenedor */
 }
 
-/* Estilo de la sección principal */
+.logo {
+  position: absolute; /* Coloca el logo en la esquina superior izquierda */
+  left: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
 
+/* Contenedor principal */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem; /* Margen para separar del header */
+}
 
 /* Barra lateral */
 .sidebar {
-  margin-top: 10px;
   width: 20%; /* 20% del ancho para la barra lateral */
   background-color: #156c6c;
   color: #ffffff;
   padding: 1rem;
-  box-sizing: border-box; /* Incluye el padding en el ancho */
-  height: 100%;
+  box-sizing: border-box;
+  height: 100vh; /* Asegura que el sidebar ocupe todo el alto de la pantalla */
+}
+
+/* Título de cada sección */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  background-color: #1f8277;
+  padding: 0.5rem;
+  border-radius: 8px;
 }
 
 .patients-list {
@@ -100,23 +130,19 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
 
 /* Contenedor del calendario */
 .calendar-container {
-  flex-direction: column;
-  flex: 2; /* Más espacio para el calendario */
-  width: 700px;
+  flex: 2;
   background-color: #ffffff;
   padding: 1rem;
   box-sizing: border-box;
   border-radius: 8px;
-  margin-left: 350px;
-  margin-top: -310px;
-  color: black;
+  margin-right: 10px;
+  color: #333;
 }
 
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr); /* Dividir en 7 columnas */
   gap: 5px;
-  
   text-align: center;
 }
 
@@ -132,15 +158,39 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
 
 /* Sección de anotaciones */
 .annotations {
-  flex-direction: column;
-  flex: 1; /* Menos espacio que el calendario */
   background-color: #d1f5f4;
   color: #333;
   padding: 1rem;
   box-sizing: border-box;
   border-radius: 8px;
-  width: 400px;
-  margin-left: 1070px;
-  margin-top: -110px;
+  width: 300px; /* Ancho inicial de la sección */
+  margin-left: 20px;
+  height: fit-content;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  /* En pantallas grandes, la barra lateral y el calendario se distribuyen en una fila */
+  .main-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .annotations {
+    margin-left: 20px; /* Añadido margen */
+  }
+}
+
+@media (max-width: 768px) {
+  /* En pantallas pequeñas (tabletas y móviles), la barra lateral se mueve arriba */
+  .main-content {
+    flex-direction: column;
+  }
+
+  .annotations {
+    width: 100%; /* Las anotaciones ocupan todo el ancho disponible */
+    margin-left: 0;
+    margin-top: 20px; /* Separación con respecto al calendario */
+  }
 }
 </style>

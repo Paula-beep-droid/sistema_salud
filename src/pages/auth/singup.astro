@@ -3,7 +3,6 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="Recepcionista">
-    <!-- Usamos el componente Layout con el título "Recepcionista" -->
     <div class="reception-dashboard">
         <h2>Panel de Citas</h2>
         <table class="appointments-table">
@@ -17,7 +16,6 @@ import Layout from "../../layouts/Layout.astro";
                 </tr>
             </thead>
             <tbody>
-                <!-- Ejemplo de cita -->
                 <tr>
                     <td>2024-11-10</td>
                     <td>09:00 AM</td>
@@ -42,7 +40,7 @@ import Layout from "../../layouts/Layout.astro";
         </table>
     </div>
 
-    <!-- Modal para mostrar detalles de la cita -->
+    <!-- Modales -->
     <div id="modalDetalles" class="ventana-emergente">
         <div class="contenido-ventana">
             <h3>Detalles de la Cita</h3>
@@ -51,53 +49,69 @@ import Layout from "../../layouts/Layout.astro";
         </div>
     </div>
 
-    <!-- Modal para confirmación de cancelación -->
     <div id="modalCancelar" class="ventana-emergente">
         <div class="contenido-ventana">
             <p id="mensajeCancelar"></p>
             <button onclick="cerrarVentana('modalCancelar')" class="cerrar-boton">Cancelar</button>
-            <button onclick="cancelarCita()" class="confirmar-boton">Confirmar Cancelación</button>
+            <button onclick="confirmarCancelacion()" class="confirmar-boton">Confirmar Cancelación</button>
         </div>
     </div>
 
-    <script type="module">
-        // Definir las funciones para manejar la lógica
-        function mostrarDetallesCita(paciente, especialidad, fecha, hora) {
-            const detalles = `Paciente: ${paciente} <br> Especialidad: ${especialidad} <br> Fecha: ${fecha} <br> Hora: ${hora}`;
-            document.getElementById('detallesCita').innerHTML = detalles;
-            document.getElementById('modalDetalles').style.display = 'block';
-        }
+    <div id="modalCancelacionConfirmada" class="ventana-emergente">
+        <div class="contenido-ventana">
+            <h3>Cancelación Confirmada</h3>
+            <p>La cita ha sido cancelada exitosamente.</p>
+            <button onclick="cerrarVentana('modalCancelacionConfirmada')" class="cerrar-boton">Cerrar</button>
+        </div>
+    </div>
 
-        // Confirmar cancelación de la cita
-        function confirmarCancelacion(paciente) {
-            document.getElementById('mensajeCancelar').innerText = `¿Estás seguro de cancelar la cita de ${paciente}?`;
-            document.getElementById('modalCancelar').style.display = 'block';
-        }
+    <script is:inline>
+        document.addEventListener("DOMContentLoaded", () => {
+            function mostrarDetallesCita(paciente, especialidad, fecha, hora) {
+                const detalles = `Paciente: ${paciente} <br> Especialidad: ${especialidad} <br> Fecha: ${fecha} <br> Hora: ${hora}`;
+                document.getElementById('detallesCita').innerHTML = detalles;
+                document.getElementById('modalDetalles').style.display = 'block';
+            }
 
-        // Cerrar ventanas emergentes
-        function cerrarVentana(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
+            function confirmarCancelacion(paciente) {
+                document.getElementById('mensajeCancelar').innerText =
+                    `¿Estás seguro de cancelar la cita de ${paciente}?`;
+                document.getElementById('modalCancelar').style.display = 'block';
+            }
 
-        // Cancelar cita (simulación de acción)
-        function cancelarCita() {
-            alert("Cita cancelada.");
-            cerrarVentana('modalCancelar');
-        }
+            function cancelarCita() {
+                // Mostrar el mensaje de cancelación confirmada
+                document.getElementById('modalCancelar').style.display = 'none';
+                document.getElementById('modalCancelacionConfirmada').style.display = 'block';
+            }
 
-        // Asignar eventos a los botones para mostrar detalles o confirmar cancelación
-        document.getElementById('confirm1').addEventListener('click', function() {
-            mostrarDetallesCita('Carlos García', 'Cardiólogo', '2024-11-10', '09:00 AM');
-        });
-        document.getElementById('cancel1').addEventListener('click', function() {
-            confirmarCancelacion('Carlos García');
-        });
+            function cerrarVentana(modalId) {
+                document.getElementById(modalId).style.display = 'none';
+            }
 
-        document.getElementById('confirm2').addEventListener('click', function() {
-            mostrarDetallesCita('Lucía Fernández', 'Pediatra', '2024-11-10', '10:30 AM');
-        });
-        document.getElementById('cancel2').addEventListener('click', function() {
-            confirmarCancelacion('Lucía Fernández');
+            // Asignación de eventos a los botones
+            document.getElementById('confirm1').addEventListener('click', () => {
+                mostrarDetallesCita('Carlos García', 'Cardiólogo', '2024-11-10', '09:00 AM');
+            });
+            document.getElementById('cancel1').addEventListener('click', () => {
+                confirmarCancelacion('Carlos García');
+            });
+
+            document.getElementById('confirm2').addEventListener('click', () => {
+                mostrarDetallesCita('Lucía Fernández', 'Pediatra', '2024-11-10', '10:30 AM');
+            });
+            document.getElementById('cancel2').addEventListener('click', () => {
+                confirmarCancelacion('Lucía Fernández');
+            });
+
+            // Botones para cerrar las ventanas modales
+            const closeButtons = document.querySelectorAll('.cerrar-boton');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const modalId = e.target.closest('.ventana-emergente').id;
+                    cerrarVentana(modalId);
+                });
+            });
         });
     </script>
 
@@ -144,12 +158,12 @@ import Layout from "../../layouts/Layout.astro";
         }
 
         .confirm-button {
-            background-color: #4CAF50; /* Verde para confirmar */
+            background-color: #4CAF50;
             color: white;
         }
 
         .cancel-button {
-            background-color: #c72f2f; /* Rojo para cancelar */
+            background-color: #c72f2f;
             color: white;
         }
 
@@ -161,7 +175,6 @@ import Layout from "../../layouts/Layout.astro";
             background-color: #a02626;
         }
 
-        /* Estilos para las ventanas emergentes */
         .ventana-emergente {
             display: none;
             position: fixed;
