@@ -11,7 +11,6 @@ import Layout from "../../layouts/Layout.astro";
                     <th>Fecha</th>
                     <th>Hora</th>
                     <th>Paciente</th>
-  
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -20,16 +19,13 @@ import Layout from "../../layouts/Layout.astro";
                     <td>2024-11-10</td>
                     <td>10:00 AM</td>
                     <td>Juan Pérez</td>
-
                     <td>
                         <button
                             onclick="location.href='/auth/historial_clinico'"
-                            class="editar-boton">Historial Clínico</button
-                        >
+                            class="editar-boton">Historial Clínico</button>
                         <button
                             class="aceptar-boton"
-                            onclick="aceptarCita(this)">Aceptar Cita</button
-                        >
+                            onclick="aceptarCita(this)">Aceptar Cita</button>
                     </td>
                 </tr>
                 <tr>
@@ -39,12 +35,10 @@ import Layout from "../../layouts/Layout.astro";
                     <td>
                         <button
                             onclick="location.href='/auth/historial_clinico'"
-                            class="editar-boton">Historial Clínico</button
-                        >
+                            class="editar-boton">Historial Clínico</button>
                         <button
                             class="aceptar-boton"
-                            onclick="aceptarCita(this)">Aceptar Cita</button
-                        >
+                            onclick="aceptarCita(this)">Aceptar Cita</button>
                         <span class="mensaje-confirmacion"></span>
                     </td>
                 </tr>
@@ -52,6 +46,7 @@ import Layout from "../../layouts/Layout.astro";
         </table>
     </div>
 
+    <!-- Ventana emergente para la confirmación de la cita -->
     <div id="ventanaEmergente" class="ventana-emergente">
         <div class="contenido-ventana">
             <p class="mensaje-confirmacion">La cita ha sido aceptada.</p>
@@ -113,7 +108,6 @@ import Layout from "../../layouts/Layout.astro";
         }
 
         .editar-boton,
-        .reagendar-boton,
         .aceptar-boton {
             padding: 6px 12px;
             margin-right: 5px;
@@ -127,11 +121,6 @@ import Layout from "../../layouts/Layout.astro";
             color: white;
         }
 
-        .reagendar-boton {
-            background-color: #add6d344;
-            color: white;
-        }
-
         .aceptar-boton {
             background-color: #add6d344;
             color: white;
@@ -140,10 +129,6 @@ import Layout from "../../layouts/Layout.astro";
 
         .editar-boton:hover {
             background-color: #07585c;
-        }
-
-        .reagendar-boton:hover {
-            background-color: #a02626;
         }
 
         .aceptar-boton:hover {
