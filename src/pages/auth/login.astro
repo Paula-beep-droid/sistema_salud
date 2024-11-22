@@ -54,10 +54,10 @@ import Layout from "../../layouts/Layout.astro";
         </div>
     </div>
 
-    <script type="text/javascript" client:load>
+    <script>
         // Función para aceptar la cita
         function aceptarCita(button) {
-            // Cambiar el texto del botón
+            // Cambiar el texto del botón a "Cita Aceptada"
             button.innerText = "Cita Aceptada";
             // Deshabilitar el botón para evitar que se vuelva a pulsar
             button.disabled = true;
@@ -122,7 +122,7 @@ import Layout from "../../layouts/Layout.astro";
         }
 
         .aceptar-boton {
-            background-color: #add6d344;
+            background-color: #4CAF50;
             color: white;
             margin-top: 15px;
         }
@@ -132,7 +132,7 @@ import Layout from "../../layouts/Layout.astro";
         }
 
         .aceptar-boton:hover {
-            background-color: #a02626;
+            background-color: #3b8e44;
         }
 
         /* Estilos para la ventana emergente */

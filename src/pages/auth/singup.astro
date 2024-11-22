@@ -2,8 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 ---
 
-<Layout title="Recepcionista">
-    <div class="reception-dashboard">
+<Layout title="Admin">
+    <div class="doctor-dashboard">
         <h2>Panel de Citas</h2>
         <table class="appointments-table">
             <thead>
@@ -11,112 +11,62 @@ import Layout from "../../layouts/Layout.astro";
                     <th>Fecha</th>
                     <th>Hora</th>
                     <th>Paciente</th>
-                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>2024-11-10</td>
-                    <td>09:00 AM</td>
-                    <td>Carlos García</td>
-                    <td>Pendiente</td>
+                    <td>10:00 AM</td>
+                    <td>Juan Pérez</td>
                     <td>
-                        <button class="confirm-button" id="confirm1">Confirmar</button>
-                        <button class="cancel-button" id="cancel1">Cancelar</button>
+                        <button class="aceptar-boton">Aceptar Cita</button>
                     </td>
                 </tr>
                 <tr>
                     <td>2024-11-10</td>
-                    <td>10:30 AM</td>
-                    <td>Lucía Fernández</td>
-                    <td>Pendiente</td>
+                    <td>11:00 AM</td>
+                    <td>Maria López</td>
                     <td>
-                        <button class="confirm-button" id="confirm2">Confirmar</button>
-                        <button class="cancel-button" id="cancel2">Cancelar</button>
+                        <button class="aceptar-boton">Aceptar Cita</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Modales -->
-    <div id="modalDetalles" class="ventana-emergente">
+    <!-- Ventana emergente para la confirmación -->
+    <div id="ventanaEmergente" class="ventana-emergente">
         <div class="contenido-ventana">
-            <h3>Detalles de la Cita</h3>
-            <p id="detallesCita"></p>
-            <button onclick="cerrarVentana('modalDetalles')" class="cerrar-boton">Cerrar</button>
-        </div>
-    </div>
-
-    <div id="modalCancelar" class="ventana-emergente">
-        <div class="contenido-ventana">
-            <p id="mensajeCancelar"></p>
-            <button onclick="cerrarVentana('modalCancelar')" class="cerrar-boton">Cancelar</button>
-            <button onclick="confirmarCancelacion()" class="confirmar-boton">Confirmar Cancelación</button>
-        </div>
-    </div>
-
-    <div id="modalCancelacionConfirmada" class="ventana-emergente">
-        <div class="contenido-ventana">
-            <h3>Cancelación Confirmada</h3>
-            <p>La cita ha sido cancelada exitosamente.</p>
-            <button onclick="cerrarVentana('modalCancelacionConfirmada')" class="cerrar-boton">Cerrar</button>
+            <p class="mensaje-confirmacion">La cita ha sido aceptada.</p>
+            <button onclick="cerrarVentana()" class="cerrar-boton">Cerrar</button>
         </div>
     </div>
 
     <script is:inline>
-        document.addEventListener("DOMContentLoaded", () => {
-            function mostrarDetallesCita(paciente, especialidad, fecha, hora) {
-                const detalles = `Paciente: ${paciente} <br> Especialidad: ${especialidad} <br> Fecha: ${fecha} <br> Hora: ${hora}`;
-                document.getElementById('detallesCita').innerHTML = detalles;
-                document.getElementById('modalDetalles').style.display = 'block';
-            }
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtener todos los botones de "Aceptar Cita"
+            const botonesAceptar = document.querySelectorAll('.aceptar-boton');
 
-            function confirmarCancelacion(paciente) {
-                document.getElementById('mensajeCancelar').innerText =
-                    `¿Estás seguro de cancelar la cita de ${paciente}?`;
-                document.getElementById('modalCancelar').style.display = 'block';
-            }
-
-            function cancelarCita() {
-                // Mostrar el mensaje de cancelación confirmada
-                document.getElementById('modalCancelar').style.display = 'none';
-                document.getElementById('modalCancelacionConfirmada').style.display = 'block';
-            }
-
-            function cerrarVentana(modalId) {
-                document.getElementById(modalId).style.display = 'none';
-            }
-
-            // Asignación de eventos a los botones
-            document.getElementById('confirm1').addEventListener('click', () => {
-                mostrarDetallesCita('Carlos García', 'Cardiólogo', '2024-11-10', '09:00 AM');
-            });
-            document.getElementById('cancel1').addEventListener('click', () => {
-                confirmarCancelacion('Carlos García');
-            });
-
-            document.getElementById('confirm2').addEventListener('click', () => {
-                mostrarDetallesCita('Lucía Fernández', 'Pediatra', '2024-11-10', '10:30 AM');
-            });
-            document.getElementById('cancel2').addEventListener('click', () => {
-                confirmarCancelacion('Lucía Fernández');
-            });
-
-            // Botones para cerrar las ventanas modales
-            const closeButtons = document.querySelectorAll('.cerrar-boton');
-            closeButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const modalId = e.target.closest('.ventana-emergente').id;
-                    cerrarVentana(modalId);
+            // Función para aceptar la cita
+            botonesAceptar.forEach((boton) => {
+                boton.addEventListener('click', function() {
+                    this.innerText = "Cita Aceptada"; // Cambiar el texto del botón
+                    this.disabled = true; // Deshabilitar el botón
+                    this.style.display = "none"; // Esconder el botón
+                    document.getElementById("ventanaEmergente").style.display = "block"; // Mostrar ventana emergente
                 });
             });
         });
+
+        // Función para cerrar la ventana emergente
+        function cerrarVentana() {
+            document.getElementById("ventanaEmergente").style.display = "none";
+        }
     </script>
 
     <style>
-        .reception-dashboard {
+        .doctor-dashboard {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
@@ -148,31 +98,17 @@ import Layout from "../../layouts/Layout.astro";
             background-color: #add6d344;
         }
 
-        .confirm-button,
-        .cancel-button {
+        .aceptar-boton {
+            background-color: #4CAF50;
+            color: white;
             padding: 6px 12px;
-            margin-right: 5px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        .confirm-button {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .cancel-button {
-            background-color: #c72f2f;
-            color: white;
-        }
-
-        .confirm-button:hover {
+        .aceptar-boton:hover {
             background-color: #3b8e44;
-        }
-
-        .cancel-button:hover {
-            background-color: #a02626;
         }
 
         .ventana-emergente {
@@ -206,20 +142,6 @@ import Layout from "../../layouts/Layout.astro";
 
         .cerrar-boton:hover {
             background-color: darkred;
-        }
-
-        .confirmar-boton {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            margin-top: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .confirmar-boton:hover {
-            background-color: #3b8e44;
         }
     </style>
 </Layout>
