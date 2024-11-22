@@ -28,7 +28,7 @@ import Layout from "../layouts/Layout.astro"; // Importa el componente Layout de
                 window.location.href = 'auth/singup'; // Redirigir a la página de recepcionista
             } else {
                 mensajeDiv.textContent = 'Número de documento no válido. Debe comenzar con "D" o "R".';
-                mensajeDiv.style.color = 'red'; // Cambiar el color del mensaje
+                mensajeDiv.style.color = 'black'; // Cambiar el color del mensaje
             }
         });
     </script>
@@ -63,7 +63,7 @@ import Layout from "../layouts/Layout.astro"; // Importa el componente Layout de
         margin-top: 20px;
         font-size: 18px;
         font-family:Verdana, Geneva, Tahoma, sans-serif;
-        color: rgba(255, 0, 0, 0.384); /* Cambia el color según tu preferencia */
+        color: rgba(0, 0, 0, 0.384); /* Cambia el color según tu preferencia */
     }
     button {
         background-color: #0b6975;
@@ -72,5 +72,8 @@ import Layout from "../layouts/Layout.astro"; // Importa el componente Layout de
         padding: 10px 20px;
         cursor: pointer;
         width: 400px;
+    }
+    .mensaje{
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
     }
 </style>
