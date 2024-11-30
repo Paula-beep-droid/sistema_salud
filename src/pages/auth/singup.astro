@@ -1,11 +1,9 @@
 ---
-import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout desde la ruta especificada
+import Layout from "../../layouts/Layout.astro";
 ---
 
-
-<Layout title="Recepcionista">
-    <!-- Usamos el componente Layout con el título "Recepcionista" -->
-    <div class="reception-dashboard">
+<Layout title="Admin">
+    <div class="doctor-dashboard">
         <h2>Panel de Citas</h2>
         <table class="appointments-table">
             <thead>
@@ -13,39 +11,62 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
                     <th>Fecha</th>
                     <th>Hora</th>
                     <th>Paciente</th>
-                    <th>Estado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Ejemplo de cita -->
                 <tr>
                     <td>2024-11-10</td>
-                    <td>09:00 AM</td>
-                    <td>Carlos García</td>
-                    <td>Pendiente</td>
+                    <td>10:00 AM</td>
+                    <td>Juan Pérez</td>
                     <td>
-                        <button class="confirm-button">Confirmar</button>
-                        <button class="cancel-button">Cancelar</button>
+                        <button class="aceptar-boton">Aceptar Cita</button>
                     </td>
                 </tr>
                 <tr>
                     <td>2024-11-10</td>
-                    <td>10:30 AM</td>
-                    <td>Lucía Fernández</td>
-                    <td>Pendiente</td>
+                    <td>11:00 AM</td>
+                    <td>Maria López</td>
                     <td>
-                        <button class="confirm-button">Confirmar</button>
-                        <button class="cancel-button">Cancelar</button>
+                        <button class="aceptar-boton">Aceptar Cita</button>
                     </td>
                 </tr>
-                <!-- Agrega más filas de citas aquí -->
             </tbody>
         </table>
     </div>
-    
+
+    <!-- Ventana emergente para la confirmación -->
+    <div id="ventanaEmergente" class="ventana-emergente">
+        <div class="contenido-ventana">
+            <p class="mensaje-confirmacion">La cita ha sido aceptada.</p>
+            <button onclick="cerrarVentana()" class="cerrar-boton">Cerrar</button>
+        </div>
+    </div>
+
+    <script is:inline>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtener todos los botones de "Aceptar Cita"
+            const botonesAceptar = document.querySelectorAll('.aceptar-boton');
+
+            // Función para aceptar la cita
+            botonesAceptar.forEach((boton) => {
+                boton.addEventListener('click', function() {
+                    this.innerText = "Cita Aceptada"; // Cambiar el texto del botón
+                    this.disabled = true; // Deshabilitar el botón
+                    this.style.display = "none"; // Esconder el botón
+                    document.getElementById("ventanaEmergente").style.display = "block"; // Mostrar ventana emergente
+                });
+            });
+        });
+
+        // Función para cerrar la ventana emergente
+        function cerrarVentana() {
+            document.getElementById("ventanaEmergente").style.display = "none";
+        }
+    </script>
+
     <style>
-        .reception-dashboard {
+        .doctor-dashboard {
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
@@ -77,31 +98,50 @@ import Layout from "../../layouts/Layout.astro"; // Importa el componente Layout
             background-color: #add6d344;
         }
 
-        .confirm-button,
-        .cancel-button {
+        .aceptar-boton {
+            background-color: #4CAF50;
+            color: white;
             padding: 6px 12px;
-            margin-right: 5px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
 
-        .confirm-button {
-            background-color: #4CAF50; /* Verde para confirmar */
-            color: white;
-        }
-
-        .cancel-button {
-            background-color: #c72f2f; /* Rojo para cancelar */
-            color: white;
-        }
-
-        .confirm-button:hover {
+        .aceptar-boton:hover {
             background-color: #3b8e44;
         }
 
-        .cancel-button:hover {
-            background-color: #a02626;
+        .ventana-emergente {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            text-align: center;
+        }
+
+        .contenido-ventana {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .cerrar-boton {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cerrar-boton:hover {
+            background-color: darkred;
         }
     </style>
 </Layout>
